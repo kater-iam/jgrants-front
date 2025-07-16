@@ -55,7 +55,8 @@ const JGrantsClient: React.FC = () => {
         offset: searchParams.offset.toString()
       })
 
-      const response = await fetch(`https://api.info.jgrants-portal.go.jp/subsidies?${params}`)
+      // CORS回避のためプロキシを使用
+      const response = await fetch(`https://corsproxy.io/?${encodeURIComponent(`https://api.info.jgrants-portal.go.jp/subsidies?${params}`)}`)
       
       if (!response.ok) {
         throw new Error(`API Error: ${response.status}`)
@@ -94,7 +95,8 @@ const JGrantsClient: React.FC = () => {
     setError(null)
     
     try {
-      const response = await fetch(`https://api.info.jgrants-portal.go.jp/subsidies/id/${id}`)
+      // CORS回避のためプロキシを使用
+      const response = await fetch(`https://corsproxy.io/?${encodeURIComponent(`https://api.info.jgrants-portal.go.jp/subsidies/id/${id}`)}`)
       
       if (!response.ok) {
         throw new Error(`API Error: ${response.status}`)
