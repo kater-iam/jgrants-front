@@ -60,7 +60,7 @@ const JGrantsClient: React.FC = () => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       };
-      const proxyUrl = `https://thingproxy.freeboard.io/fetch/https://api.info.jgrants-portal.go.jp/subsidies?${params}`;
+      const proxyUrl = `https://thingproxy.freeboard.io/fetch/https://api.jgrants-portal.go.jp/exp/v1/public/subsidies?${params}`;
       const response = await fetch(proxyUrl, { headers })
       
       if (!response.ok) {
@@ -105,7 +105,7 @@ const JGrantsClient: React.FC = () => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       };
-      const proxyUrl = `https://thingproxy.freeboard.io/fetch/https://api.info.jgrants-portal.go.jp/subsidies/id/${id}`;
+      const proxyUrl = `https://thingproxy.freeboard.io/fetch/https://api.jgrants-portal.go.jp/exp/v1/public/subsidies/${id}`;
       const response = await fetch(proxyUrl, { headers })
       
       if (!response.ok) {
