@@ -56,13 +56,15 @@ const JGrantsClient: React.FC = () => {
       })
 
       // CORS回避のためプロキシを使用
-      const response = await fetch(`https://corsproxy.io/?${encodeURIComponent(`https://api.info.jgrants-portal.go.jp/subsidies?${params}`)}`)
+      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://api.info.jgrants-portal.go.jp/subsidies?${params}`)}`;
+      const response = await fetch(proxyUrl)
       
       if (!response.ok) {
         throw new Error(`API Error: ${response.status}`)
       }
       
-      const data = await response.json()
+      const proxyData = await response.json()
+      const data = JSON.parse(proxyData.contents)
       
       if (data.result && Array.isArray(data.result)) {
         const transformedSubsidies: SubsidyItem[] = data.result.map((item: any) => ({
@@ -96,13 +98,15 @@ const JGrantsClient: React.FC = () => {
     
     try {
       // CORS回避のためプロキシを使用
-      const response = await fetch(`https://corsproxy.io/?${encodeURIComponent(`https://api.info.jgrants-portal.go.jp/subsidies/id/${id}`)}`)
+      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://api.info.jgrants-portal.go.jp/subsidies/id/${id}`)}`;
+      const response = await fetch(proxyUrl)
       
       if (!response.ok) {
         throw new Error(`API Error: ${response.status}`)
       }
       
-      const data = await response.json()
+      const proxyData = await response.json()
+      const data = JSON.parse(proxyData.contents)
       
       if (data.result && data.result.length > 0) {
         const item = data.result[0]
